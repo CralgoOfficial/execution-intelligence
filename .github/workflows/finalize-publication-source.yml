@@ -1,0 +1,39 @@
+name: Finalize published source
+
+on:
+  push:
+    paths:
+      - '.publication/FINALIZE_SOURCE'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Mark paper source as published
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('paper.md')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace('**Status:** Ready for Zenodo - release candidate', '**Status:** Published')
+          text = text.replace('**Date:** August 2026', '**Published:** 29 August 2026')
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit source status
+        run: |
+          git config user.name "Cralgo Publication Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add paper.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Mark Execution Intelligence v1.0 source as published"
+            git push origin HEAD:main
+          fi
