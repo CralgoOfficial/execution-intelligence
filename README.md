@@ -4,7 +4,7 @@
 
 Execution Intelligence is a Cralgo concept concerned with a specific organisational problem: how informed judgement is carried from intent into execution without losing the context, priorities and reasoning that made the original direction meaningful.
 
-> **Publication status:** Pre-publication / DOI pending  
+> **Publication status:** DOI reserved / publishing  
 > **Planned first release:** v1.0  
 > **Author:** Anil Kabir Kumar  
 > **Affiliation:** Cralgo
@@ -83,9 +83,9 @@ The first public paper is:
 
 The publication PDF is being prepared as a **12-page v1.0 release**.
 
-The Zenodo DOI will be reserved before the final PDF is published. Once reserved, the DOI will be written back into this repository, the final PDF and citation metadata.
+**DOI:** https://doi.org/10.5281/zenodo.22159150
 
-Until that happens, this repository should be treated as the public pre-publication home of the concept, not the DOI-backed final record.
+The DOI has been reserved and will become active when the Zenodo record is published.
 
 ---
 

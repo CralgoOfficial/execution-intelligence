@@ -8,7 +8,7 @@
 **Affiliation:** Cralgo  
 **Organisation:** Cralgo Innovations (OPC) Pvt. Ltd.  
 **Date:** August 2026  
-**DOI:** Pending reservation
+**DOI:** 10.5281/zenodo.22159150
 
 ---
 
