@@ -1,24 +1,32 @@
 # Publication status
 
-**Execution Intelligence: Judgement Carried into Execution** is being prepared for its first public DOI-backed release as **v1.0**.
+**Execution Intelligence: Judgement Carried into Execution** was published as **v1.0** on **29 August 2026**.
 
-Current state:
+## Published record
 
-- public concept repository: live
-- manuscript source: public release candidate
-- publication format: 12-page PDF
-- version: 1.0
-- licence: CC BY-NC-ND 4.0
-- Zenodo DOI: pending reservation
-- authoritative DOI-backed record: not yet published
+- Author: Anil Kabir Kumar
+- Affiliation: Cralgo
+- Organisation: Cralgo Innovations (OPC) Pvt. Ltd.
+- Version: 1.0
+- Publication format: 12-page PDF
+- Licence: CC BY-NC-ND 4.0
+- DOI: https://doi.org/10.5281/zenodo.22159150
+- Zenodo: https://zenodo.org/records/22159150
+- GitHub release: https://github.com/CralgoOfficial/execution-intelligence/releases/tag/v1.0
+- Final PDF: https://github.com/CralgoOfficial/execution-intelligence/releases/download/v1.0/Execution_Intelligence_Judgement_Carried_into_Execution_v1.0.pdf
 
-## Release sequence
+The Zenodo DOI-backed record is the authoritative persistent publication record. GitHub preserves the public source, citation metadata, release history and matching v1.0 PDF.
 
-1. Reserve the Zenodo DOI.
-2. Write the DOI into `paper.md`, `CITATION.cff` and the publication PDF.
-3. Generate and visually verify the final 12-page PDF.
-4. Publish the GitHub v1.0 release.
-5. Publish the matching Zenodo v1.0 record.
-6. Write the final Zenodo record URL back into this repository and Cralgo's public research pages.
+## Publication integrity
 
-Until those steps are complete, do not cite the repository as the DOI-backed v1.0 publication.
+The automated publication workflow:
+
+1. reserved the Zenodo DOI;
+2. inserted the DOI into the manuscript and citation metadata;
+3. generated the final PDF;
+4. verified that the PDF contains exactly 12 pages;
+5. committed the final PDF to GitHub;
+6. created the GitHub v1.0 release;
+7. published the matching Zenodo record.
+
+Future substantive changes should be released as a new version rather than silently replacing the v1.0 publication.
