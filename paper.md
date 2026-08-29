@@ -2,12 +2,12 @@
 
 *A Cralgo Concept Paper*
 
-**Status:** Ready for Zenodo - release candidate  
+**Status:** Published  
 **Publication version:** 1.0  
 **Author:** Anil Kabir Kumar  
 **Affiliation:** Cralgo  
 **Organisation:** Cralgo Innovations (OPC) Pvt. Ltd.  
-**Date:** August 2026  
+**Published:** 29 August 2026  
 **DOI:** 10.5281/zenodo.22159150
 
 ---
