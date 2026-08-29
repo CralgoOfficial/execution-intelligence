@@ -4,10 +4,11 @@
 
 Execution Intelligence is a Cralgo concept concerned with a specific organisational problem: how informed judgement is carried from intent into execution without losing the context, priorities and reasoning that made the original direction meaningful.
 
-> **Publication status:** DOI reserved / publishing  
-> **Planned first release:** v1.0  
+> **Publication status:** Published — v1.0  
 > **Author:** Anil Kabir Kumar  
-> **Affiliation:** Cralgo
+> **Affiliation:** Cralgo  
+> **Published:** 29 August 2026  
+> **DOI:** https://doi.org/10.5281/zenodo.22159150
 
 ---
 
@@ -76,22 +77,24 @@ The relationship between the two remains a research question rather than a compl
 
 ## Publication
 
-The first public paper is:
-
 **Execution Intelligence: Judgement Carried into Execution**  
-*A Cralgo Concept Paper*
+*A Cralgo Concept Paper*  
+**Version:** 1.0  
+**Publication format:** 12-page PDF  
+**Licence:** CC BY-NC-ND 4.0
 
-The publication PDF is being prepared as a **12-page v1.0 release**.
+- DOI-backed record: https://doi.org/10.5281/zenodo.22159150
+- Zenodo record: https://zenodo.org/records/22159150
+- GitHub release: https://github.com/CralgoOfficial/execution-intelligence/releases/tag/v1.0
+- Publication PDF: https://github.com/CralgoOfficial/execution-intelligence/releases/download/v1.0/Execution_Intelligence_Judgement_Carried_into_Execution_v1.0.pdf
 
-**DOI:** https://doi.org/10.5281/zenodo.22159150
-
-The DOI has been reserved and will become active when the Zenodo record is published.
+The DOI-backed Zenodo record is the authoritative persistent publication record. This GitHub repository is the public source and release record for v1.0.
 
 ---
 
 ## Licence
 
-The planned v1.0 concept-paper release uses **CC BY-NC-ND 4.0** — allowing sharing and citation with attribution while restricting commercial reuse and derivative versions.
+The v1.0 concept-paper release uses **CC BY-NC-ND 4.0** — allowing sharing and citation with attribution while restricting commercial reuse and derivative versions.
 
 See `LICENSE.md`.
 
