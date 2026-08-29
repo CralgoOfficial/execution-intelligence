@@ -1,30 +1,28 @@
 # Publication automation
 
-Execution Intelligence v1.0 is configured for an automated GitHub -> Zenodo publication workflow.
+Execution Intelligence v1.0 was published through an automated GitHub -> Zenodo workflow on 29 August 2026.
+
+**DOI:** https://doi.org/10.5281/zenodo.22159150  
+**GitHub release:** https://github.com/CralgoOfficial/execution-intelligence/releases/tag/v1.0
 
 ## Why this uses a custom workflow
 
-Zenodo's native GitHub integration is designed around archiving GitHub **software** releases. Execution Intelligence is a **publication / concept paper**, so this repository uses the Zenodo REST API instead. This preserves the correct Zenodo resource type while still allowing GitHub to drive the release process.
+Zenodo's native GitHub integration is designed primarily around archiving GitHub software releases. Execution Intelligence is a **publication / concept paper**, so this repository uses a Zenodo API-driven workflow instead. This preserves the publication-oriented metadata while allowing GitHub to drive the release process.
 
-## One-time requirement
+## Authentication
 
-Create a Zenodo personal access token with these scopes:
-
-- `deposit:write`
-- `deposit:actions`
-
-Store it in this GitHub repository as an Actions secret named exactly:
+The workflow uses a Zenodo personal access token stored as a GitHub Actions secret named:
 
 `ZENODO_TOKEN`
 
-Never commit or paste the token into repository files.
+The token must never be committed to repository files or logs.
 
 ## What the workflow does
 
-The workflow `.github/workflows/publish-v1.yml` performs the v1.0 publication end to end:
+The workflow `.github/workflows/publish-v1.yml` performs the publication sequence:
 
 1. Creates or reuses a Zenodo draft.
-2. Obtains Zenodo's pre-reserved DOI through the REST API.
+2. Obtains a pre-reserved DOI.
 3. Writes the DOI into the publication source and citation metadata.
 4. Builds the final PDF reproducibly from `paper.md`.
 5. Fails if the PDF is not exactly **12 pages**.
@@ -32,28 +30,26 @@ The workflow `.github/workflows/publish-v1.yml` performs the v1.0 publication en
 7. Commits the DOI and final PDF to GitHub.
 8. Creates the GitHub `v1.0` release and attaches the same PDF.
 9. Publishes the Zenodo record.
-10. Writes the final Zenodo record URL/status back into GitHub.
+10. Records the final publication state in GitHub.
 
 The authoritative publication file is:
 
 `dist/Execution_Intelligence_Judgement_Carried_into_Execution_v1.0.pdf`
 
-## Trigger
+## Publication state
 
-The workflow can be run manually from GitHub Actions.
+Execution Intelligence v1.0 is now published.
 
-It can also be triggered by committing/changing:
+The publication marker is retained at:
 
 `.publication/PUBLISH`
 
-The PUBLISH marker is intentionally not created until the Zenodo token has been configured.
-
-## Safety / repeatability
-
-The workflow stores Zenodo draft state in:
+The publication state is retained at:
 
 `.publication/zenodo-state.json`
 
-If a run stops after a DOI has been reserved, a subsequent run reuses that Zenodo draft instead of intentionally creating a new DOI.
+## Safety / repeatability
 
-A published v1.0 deposit is treated as final. Future substantive publication updates should use Zenodo versioning rather than overwriting the v1.0 record.
+A published v1.0 deposit is treated as final. Future substantive updates should use a new Zenodo version rather than overwriting or silently replacing the v1.0 record.
+
+For future Cralgo publications, the same automation pattern can be reused with publication-specific metadata, repository names and page requirements.
