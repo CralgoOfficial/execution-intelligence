@@ -1,0 +1,124 @@
+name: Publish Execution Intelligence v1.0
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.publication/PUBLISH'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: execution-intelligence-v1-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+      FINAL_PDF: dist/Execution_Intelligence_Judgement_Carried_into_Execution_v1.0.pdf
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install system fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-core
+
+      - name: Install publication dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests reportlab pypdf
+
+      - name: Verify Zenodo token is configured
+        run: |
+          if [ -z "$ZENODO_TOKEN" ]; then
+            echo "ZENODO_TOKEN repository secret is missing."
+            exit 1
+          fi
+
+      - name: Reserve DOI, build exactly 12 pages and upload Zenodo draft
+        run: python automation/zenodo_publish.py prepare
+
+      - name: Commit DOI and final PDF to GitHub
+        run: |
+          git config user.name "Cralgo Publication Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add README.md paper.md CITATION.cff PUBLICATION.md .publication/zenodo-state.json "$FINAL_PDF"
+          if ! git diff --cached --quiet; then
+            git commit -m "Prepare Execution Intelligence v1.0 with reserved DOI"
+            git push origin HEAD:main
+          fi
+
+      - name: Read reserved DOI
+        id: state
+        run: |
+          DOI=$(python -c 'import json; print(json.load(open(".publication/zenodo-state.json"))["doi"])')
+          echo "doi=$DOI" >> "$GITHUB_OUTPUT"
+
+      - name: Create or update GitHub v1.0 release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DOI: ${{ steps.state.outputs.doi }}
+        run: |
+          cat > /tmp/release-notes.md <<EOF
+          # Execution Intelligence v1.0
+
+          **Judgement carried into execution.**
+
+          *Execution Intelligence: Judgement Carried into Execution* is the first DOI-backed Cralgo Concept Paper on Execution Intelligence.
+
+          - Author: Anil Kabir Kumar
+          - Affiliation: Cralgo
+          - Version: 1.0
+          - DOI: https://doi.org/$DOI
+          - Licence: CC BY-NC-ND 4.0
+          - Publication PDF: 12 pages
+
+          The paper presents judgement continuity as the central object of attention between organisational intent and execution and uses execution drift as descriptive working terminology. It is a conceptual contribution and research agenda, not an industry standard or empirically validated theory.
+          EOF
+
+          if gh release view v1.0 >/dev/null 2>&1; then
+            gh release upload v1.0 "$FINAL_PDF" --clobber
+            gh release edit v1.0 --title "Execution Intelligence v1.0" --notes-file /tmp/release-notes.md
+          else
+            gh release create v1.0 "$FINAL_PDF" \
+              --target main \
+              --title "Execution Intelligence v1.0" \
+              --notes-file /tmp/release-notes.md
+          fi
+
+      - name: Publish Zenodo record
+        run: python automation/zenodo_publish.py publish
+
+      - name: Commit final published status
+        run: |
+          git pull --rebase origin main
+          git add README.md CITATION.cff PUBLICATION.md .publication/zenodo-state.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record published Zenodo v1.0 DOI"
+            git push origin HEAD:main
+          fi
+
+      - name: Publication summary
+        run: |
+          python - <<'PY'
+          import json
+          state = json.load(open('.publication/zenodo-state.json'))
+          print('Execution Intelligence v1.0 published')
+          print('DOI:', state['doi'])
+          print('Zenodo:', state.get('zenodo_url'))
+          print('GitHub release: https://github.com/CralgoOfficial/execution-intelligence/releases/tag/v1.0')
+          print('PDF pages: 12')
+          PY
