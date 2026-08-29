@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+title: "Execution Intelligence: Judgement Carried into Execution"
+message: "If you reference this work, please cite the published v1.0 record once the DOI is issued."
+type: article
+authors:
+  - family-names: "Kabir Kumar"
+    given-names: "Anil"
+    affiliation: "Cralgo"
+version: "1.0"
+repository-code: "https://github.com/CralgoOfficial/execution-intelligence"
+url: "https://cralgo.com/execution-intelligence"
+license: "CC-BY-NC-ND-4.0"
+keywords:
+  - execution intelligence
+  - judgement continuity
+  - execution drift
+  - organisational execution
+  - governance
+  - organisational learning
+  - strategy execution
+  - technology governance
+abstract: >-
+  Execution Intelligence is a Cralgo concept concerned with how informed judgement is
+  carried from organisational intent into execution without losing the context,
+  priorities and reasoning that made the original direction meaningful. The proposed
+  contribution centres judgement continuity, uses execution drift as descriptive
+  shorthand, and presents Context -> Judgement -> Priorities -> Structure -> Governance
+  -> Execution -> Learning as a connected conceptual lens rather than a rigid method.
+notes: >-
+  Pre-publication citation metadata. The Zenodo DOI and final publication date will be
+  added before the v1.0 release is treated as the authoritative citation record.
