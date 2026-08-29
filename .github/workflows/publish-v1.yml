@@ -104,10 +104,10 @@ jobs:
 
       - name: Commit final published status
         run: |
-          git pull --rebase origin main
           git add README.md CITATION.cff PUBLICATION.md .publication/zenodo-state.json
           if ! git diff --cached --quiet; then
             git commit -m "Record published Zenodo v1.0 DOI"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
 
